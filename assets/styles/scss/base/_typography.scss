@@ -1,0 +1,102 @@
+/* typography.scss */
+@use '../abstracts' as *;
+
+body {
+  font-size: $paragraph-size;
+  line-height: 1.4;
+  font-family: $paragraph-font;
+  font-weight: $paragraph-wight;
+  font-style: normal;
+  margin-bottom: 1.96rem;
+  letter-spacing: 1px;
+  color: $font-color;
+}
+
+.nav {
+  font-family: $paragraph-font;
+  font-weight: $title-weight;
+
+  a {
+    font-size: $nav-size;
+    color: $font-color;
+  }
+
+  a:hover {
+    background-color: $shadow-color;
+  }
+}
+
+.header {
+  h1 {
+    font-size: $title-size;
+    font-family: $header-font;
+    font-weight: $title-weight;
+    margin: 2rem 0 0.5rem;
+  }
+}
+
+.content, .two-col-content, .sidebar {
+  h1 {
+    font-size: $header-size;
+    font-family: $header-font;
+    font-weight: $title-weight;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  h2,
+  h3 {
+    font-size: $subheader-size;
+    font-family: $header-font;
+  }
+}
+
+.lucky {
+  h1 {
+    font-family: $paragraph-font;
+    font-size: $lucky-size;
+    font-weight: $header-weight;
+    background-clip: text;
+    background-image: linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);
+    color: $lucky-color;
+    -webkit-text-stroke-color: transparent;
+    -webkit-text-stroke-width: calc(1em / 16);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .nav-toggle {
+    font-size: $mobile-icon;
+  }
+
+  .nav {
+    a:hover {
+      font-size: $nav-hover;
+    }
+  }
+
+  .content {
+    h1 {
+      font-size: $mobile-header;
+    }
+
+    h2,
+    h3 {
+      font-size: $mobile-subheader;
+    }
+
+    p {
+      font-size: $mobile-paragraph;
+    }
+  }
+
+  .footer {
+    p {
+      font-size: $mobile-paragraph;
+    }
+  }
+}

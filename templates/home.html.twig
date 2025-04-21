@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    <!--{{ parent() }}-->
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article class="article">
+        <div class="text">
+            <h1>Home</h1>
+            <p>Jag heter Jenny och bor i Västerås och läser just nu kurspaketet Webbprogrammering och Databaser på Blekinge Tekniska Högskola.</p>
+            <p>Vid sidan av studierna jobbar jag som testare på Sveriges a-kassor, där vi just nu har fullt upp med att anpassa systemen inför en kommande lagändring i arbetslöshetsförsäkringen.</p>
+            <p>När jag inte sitter vid datorn gillar jag att hålla på med musik – jag sjunger i kör, försöker lära mig spela gitarr och går gärna på konserter när tillfälle ges.</p>
+        </div>
+        <div class="image">
+            <img src="{{ asset('img/JennyGif.gif') }}" alt="Gif with Jenny">
+        </div>
+    </article>
+</div>
+{% endblock %}

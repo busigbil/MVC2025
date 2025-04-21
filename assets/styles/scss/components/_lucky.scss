@@ -1,0 +1,12 @@
+/* lucky.scss */
+@use '../abstracts' as *;
+
+.lucky {
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: $lucky-color;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+    padding: 2rem 1rem;
+}

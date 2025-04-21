@@ -1,0 +1,100 @@
+/* article.scss */
+@use '../abstracts' as *;
+
+.article {
+  display: grid;
+  gap: 1.96rem;
+  margin-bottom: 1.96rem;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  place-items: center;
+
+  .text {
+    grid-column: 1 / span 1;
+  }
+
+  .image {
+    grid-column: 2 / span 1;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 50px;
+  }
+
+  a {
+    color: $underline-color;
+  }
+
+  a:hover {
+    text-shadow: $underline-color 1px 0 10px;
+  }
+
+  .text p a {
+    text-decoration: underline;
+  }
+}
+
+.font {
+  border-spacing: 14px;
+  border-collapse: separate;
+}
+
+.color {
+  border-spacing: 4px;
+  border-collapse: separate;
+
+  td {
+    width: 6rem;
+    height: 2rem;
+    border: solid 1px #fff;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .article {
+    grid-template-columns: auto;
+
+    .text,
+    .image {
+      grid-column: 1 / span 1;
+    }
+
+
+  }
+
+  .color,
+  .font {
+    tr {
+      display: block;
+      margin-bottom: 0.625rem;
+    }
+
+    td {
+      display: block;
+    }
+
+    th {
+      display: block;
+    }
+  }
+
+  .color {
+    display: grid;
+    gap: 1.96rem;
+    margin-bottom: 1.96rem;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    justify-content: center;
+
+    tbody,
+    thead {
+      align-self: center;
+    }
+
+    th {
+      padding: 0.5rem;
+    }
+  }
+}

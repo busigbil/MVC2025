@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky number{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="lucky">
+        <img src="{{ asset('img/shiba.gif') }}" alt="Shiba gif">
+        <h1>Lucky number: {{ number }}</h1>
+    </div>
+</div>
+{% endblock %}

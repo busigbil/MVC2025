@@ -1,0 +1,50 @@
+/* header.scss */
+@use '../abstracts' as *;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(0deg, $background-color 0%, $gradient-color 100%);
+  border-bottom: 3px double lightgrey;
+
+
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  z-index: 2;
+}
+
+.nav {
+  max-width: 1170px;
+  margin: auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+
+  .active {
+    text-decoration: underline $darker-underline solid 3px;
+  }
+
+  ul {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    list-style: none;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li a {
+    text-decoration: none;
+  }
+
+  li {
+    padding: 0.5rem 1rem;
+  }
+}

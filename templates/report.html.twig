@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article>
+        <h1>Report</h1>
+
+        <h2 id="kmom01">Kmom01</h2>
+        <p>Mina tidigare erfarenheter av objektorientering kommer främst från den objektorienterade Python-kursen på BTH samt en tidigare kurs i Java på en annan skola. Det var dock ett tag sedan jag senast arbetade med objektorienterade begrepp, men mycket känns igen.</p>
+        <p>Under detta kursmoment har jag lärt mig att klasser och objekt i PHP fungerar på ett liknande sätt som i andra objektorienterade språk. En klass definieras med nyckelordet class, och innehåller properties (medlemsvariabler) som beskriver objektets tillstånd (state), samt metoder (funktioner) som definierar objektets beteende.</p>
+        <p>Precis som i andra språk kan både properties och metoder ha olika nivåer av synlighet: public, protected och private. För att kapsla in data används private eller protected, medan det som ska vara tillgängligt i det publika API:t markeras med public. Det är också vanligt att använda getters och setters för att kontrollera åtkomst till privata properties, för att kunna använda sig av inkapsling och kontrollera det som användaren har tillgång till.</p>
+        <p>För att referera till objektets egna metoder eller properties inom klassen används $this->propertyNamn eller $this->metodNamn(). Liksom i Python kan även en konstruktor användas för att skapa innehållet vid initiering av ett nytt objekt. En destruktor kan användas för att förstöra objekt i PHP, men är inte nödvändigt, eftersom språket automatiskt förstör minnet kopplat till objektet när det är färdigt.</p>
+        <p>När jag arbetade med uppgiften me/report reflekterade jag över hur många filer och kataloger som skapas vid installation av Symfony. I uppgiften skapades routes med hjälp av Symfonys Controller-klass, som placeras i katalogen src/Controller. Dessa controller-filer innehåller logik och renderar innehåll via HTML-Twig templates, som lagras i katalogen templates/.</p>
+        <p>Twig-filerna ansvarar för presentationen av innehållet, och data skickas till dem via controller-metoden render(). Här var en viktig insikt (min TIL) att datan måste struktureras som en array (på samma sätt som gjordes i övningsuppgiften) för att Twig ska kunna läsa och använda innehållet korrekt.</p>
+        <p>I public-katalogen finns index.php, som fungerar som utgångspunkt för applikationen och innehåller autoloadern, vilket möjliggör automatisk inladdning av klassfiler. Jag använde katalogen assets/styles för att sätta upp SASS i projektet.</p>
+        <p>Jag märkte att det fanns många kataloger och filer i Symfony som troligtvis har viktiga funktioner i en större webbapplikation, men som jag ännu inte förstått fullt ut. För ett mer professionellt projekt hade det kanske varit bättre att lagra innehåll (som denna text) i en lättviktig databas eller i markdown-filer, snarare än att skriva in dem direkt i Twig-filerna.</p>
+        <p>En annan reflektion är att mycket information om PHP som finns online är inaktuell. Därför är resurser som artikeln “PHP: The Right Way” värdefulla. Jag ser särskilt användning för avsnittet Coding Practices, som ger exempel på bra kodstil och hur man t.ex. arbetar med datum.</p>
+        <p>Framöver tror jag att delar om testning, säkerhet och deployment i PHP: The Right Way kan vara bra referenser, särskilt om jag i framtiden sätter upp ett eget PHP-projekt i arbetslivet.</p>
+
+        <h2 id="kmom02">Kmom02</h2>
+        <p>text för kmom02</p>
+    </article>
+
+</div>
+{% endblock %}
