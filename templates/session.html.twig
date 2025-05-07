@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article>
+
+        <h1>Session content</h1>
+        {% for content in session %}
+        <p>{{ dump(content) }}</p>
+        {% endfor %}
+
+        <form method="post" action="">
+            <p>
+                <input type="submit" name="restart" value="Delete session"
+                    onClick="this.form.action='{{ path('delete_session') }}'">
+            </p>
+        </form>
+
+    </article>
+
+</div>
+{% endblock %}
