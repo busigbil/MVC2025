@@ -8,13 +8,8 @@
   align-items: center;
   background: linear-gradient(0deg, $background-color 0%, $gradient-color 100%);
   border-bottom: 3px double lightgrey;
-
-
   overflow: hidden;
-  position: fixed;
-  top: 0;
   width: 100%;
-
   z-index: 2;
 }
 
