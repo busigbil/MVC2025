@@ -27,9 +27,11 @@
                 <li><a href="{{ path('report') }}">Report</a></li>
                 <li><a href="{{ path('lucky') }}">Lucky number</a></li>
                 <li><a href="{{ path('json_routes') }}">API-routes</a></li>
+                <li><a href="{{ path('card') }}">Cards</a></li>
             </ul>
         </nav>
     </header>
+    {{ include('flash.html.twig') }}
 
     <main class="main">
         {% block content %}{% endblock %}
