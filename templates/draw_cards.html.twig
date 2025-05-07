@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ header }}{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="two-col-content">
+    <article>
+        <h1>{{ header }}</h1>
+
+        <div class="card-container">
+            {% for value in values %}
+            <div class="card">
+                {% if value[0] == 'H' or value[0] == 'D' %}
+                <div class="red">
+                    <div class="top-suit">
+                        {{ value[2] }}
+                    </div>
+                    <div class="rank">
+                        {{ value[1] }}
+                    </div>
+                    <div class="bottom-suit">
+                        {{ value[2] }}
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <div class="top-suit">
+                        {{ value[2] }}
+                    </div>
+                    <div class="rank">
+                        {{ value[1] }}
+                    </div>
+                    <div class="bottom-suit">
+                        {{ value[2] }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </article>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar">
+        <h2>Cards left in the deck: {{ num_cards }}</h2>
+    </div>
+</div>
+{% endblock %}
