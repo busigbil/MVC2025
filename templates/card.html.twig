@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article>
+        <h1>Card</h1>
+
+        <form method="post" action="">
+            <h2>Show all cards in the deck</h2>
+            <input type="submit" name="show" value="Select" onClick="this.form.action='{{ path('card_deck') }}';">
+        </form>
+
+        <form method="post" action="">
+            <h2>Shuffle the deck</h2>
+            <input type="submit" name="shuffle" value="Select" onClick="this.form.action='{{ path('card_shuffle') }}';">
+        </form>
+
+        <form method="post" action="">
+            <h2>Draw a card</h2>
+            <input type="submit" name="draw_one" value="Select" onClick="this.form.action='{{ path('card_draw') }}';">
+        </form>
+
+        <h2>Draw multiple cards</h2>
+        <button>
+            <a href="{{ path('card_hand', {num: 3}) }}">Draw 3 cards</a>
+        </button>
+
+    </article>
+
+</div>
+{% endblock %}
