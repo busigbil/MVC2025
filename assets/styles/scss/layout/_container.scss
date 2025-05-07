@@ -21,9 +21,14 @@ body {
 
 .content {
   max-width: 64rem;
-  padding: 12rem 2rem 2rem;
+  padding: 10rem 2rem 2rem;
   margin: 1.96rem auto;
   min-height: 20rem;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
 }
 
 .two-col-content {
