@@ -45,10 +45,12 @@ body {
   }
 
   h2,
-  h3 {
+  h3,
+  li {
     font-size: $subheader-size;
     font-family: $header-font;
   }
+
 }
 
 .lucky {
