@@ -1,5 +1,5 @@
 # Report - Mina inlämningsuppgifter i MVC
-![Shiba image](public/img/shiba_icon.svg)
+![First page image](public/img/first_page.png)
 
 Kursen i Model-View-Controller (MVC) vid Blekinge Tekniska Högskola ger studenter en djupgående förståelse för MVC-arkitekturen, en central designprincip inom modern webb- och applikationsutveckling.
 
