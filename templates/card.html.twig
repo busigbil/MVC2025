@@ -7,31 +7,42 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
+<div class="two-col-content">
     <article>
         <h1>Card</h1>
 
+        <h2>Klasser och UML</h2>
+        <p>Klassen DeckOfCards innehåller metoder för att hantera hela kortleken. Ett nytt objekt kan antingen skapa en ny kortlek, eller ett objekt av en befintlig array med kort. När en kortlek skapas kombineras värden för suit och ranks, för att få en kortlek med 52 kort. Ett kort kan dras från kortleken, och visas upp. Detta kort tas då bort från kortleken. Klassen innehåller även metoder för att blanda och sortera kortleken, samt för att returnera antalet kort i kortleken och alla kortlekens värden.</p>
+        <p>DeckOfCards har en lös koppling till klassen Card. Genom att använda värden från DeckOfCards-klassen skapas Card-objekten, som antingen kan instansieras av en array(värden från deck of cards), eller som ett tomt värde. Klassen innehåller metoder för att returnera kortets färg och värde. Klassen CardGraphic ärver från Card. Den innehåller en metod för att returnera kortets värde, med tillägg att även kortets symbol returneras.</p>
+        <p>CardHand klassen är en komposition av Card-klassen, där ett antal kort byggs upp av Card-objekten. Klassen innehåller även metoder för att returnera antalet kort och alla värden på korten i handen.</p>
+        <img src="{{ asset('img/uml.png') }}" alt="UML for card classes">
+    </article>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar">
+
+        <h2>Card options</h2>
         <form method="post" action="">
-            <h2>Show all cards in the deck</h2>
+            <p>Show all cards in the deck</p>
             <input type="submit" name="show" value="Select" onClick="this.form.action='{{ path('card_deck') }}';">
         </form>
 
         <form method="post" action="">
-            <h2>Shuffle the deck</h2>
+            <p>Shuffle the deck</p>
             <input type="submit" name="shuffle" value="Select" onClick="this.form.action='{{ path('card_shuffle') }}';">
         </form>
 
         <form method="post" action="">
-            <h2>Draw a card</h2>
+            <p>Draw a card</p>
             <input type="submit" name="draw_one" value="Select" onClick="this.form.action='{{ path('card_draw') }}';">
         </form>
 
-        <h2>Draw multiple cards</h2>
+        <p>Draw multiple cards</p>
         <button>
             <a href="{{ path('card_hand', {num: 3}) }}">Draw 3 cards</a>
         </button>
 
-    </article>
-
+    </div>
 </div>
 {% endblock %}
