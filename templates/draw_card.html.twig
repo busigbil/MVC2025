@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="two-col-content">
+<div class="content">
     <article>
         <h1>{{ header }}</h1>
 
@@ -40,14 +40,9 @@
                 </div>
                 {% endif %}
             </div>
-
         </div>
-    </article>
-{% endblock %}
-
-{% block sidebar %}
-    <div class="sidebar">
         <h2>Cards left in the deck: {{ num_cards }}</h2>
-    </div>
+    </article>
+
 </div>
 {% endblock %}
