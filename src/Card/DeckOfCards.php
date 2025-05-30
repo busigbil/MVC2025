@@ -4,13 +4,19 @@ namespace App\Card;
 
 class DeckOfCards
 {
-    private $deck;
+    /**
+     * @var string[][]
+     */
+    private array $deck;
 
-    public function __construct(?Array $deckOfCards = null)
+    public function __construct()
     {
-        $this->deck = $deckOfCards ?? $this->createDeck();
+        $this->deck = $this->createDeck();
     }
 
+    /**
+     * @return string[][]
+     */
     public function createDeck(): array
     {
         $suits = ['C', 'S', 'H', 'D'];
@@ -26,16 +32,19 @@ class DeckOfCards
         return $deckArr;
     }
 
+    /**
+     * @return string[]
+     */
     public function drawCard(): array
     {
         //Draw random value from array, and remove from the deck
         $key = array_rand($this->deck, 1);
         $value = $this->deck[$key];
-        array_splice($this->deck, $key, 1);
+        unset($this->deck[$key]);
         return $value;
     }
 
-    public function sortCards(): void 
+    public function sortCards(): void
     {
         //Sort per suit, and add ace infront
         $suits = ['C', 'S', 'H', 'D'];
@@ -47,15 +56,16 @@ class DeckOfCards
 
             foreach ($this->deck as $values) {
 
-                if ($values[0] === $suit) {
-
-                    if ($values[1] === 'A') {
-                        $startVal = $values;
-
-                    } else {
-                        $loopValues[] = $values;
-                    }
+                if ($values[0] !== $suit) {
+                    continue;
                 }
+
+                if ($values[1] === 'A') {
+                    $startVal = $values;
+                    continue;
+                }
+
+                $loopValues[] = $values;
             }
             asort($loopValues);
             array_unshift($loopValues, $startVal);
@@ -64,7 +74,7 @@ class DeckOfCards
         $this->deck = $sortArray;
     }
 
-    public function shuffleCards(): void 
+    public function shuffleCards(): void
     {
         //shuffle order in deck of cards
         shuffle($this->deck);
@@ -75,6 +85,9 @@ class DeckOfCards
         return count($this->deck);
     }
 
+    /**
+     * @return string[][]
+     */
     public function getValues(): array
     {
         return $this->deck;
