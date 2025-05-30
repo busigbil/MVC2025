@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article>
+        <h1>Game</h1>
+
+        <h2>Kortspelet 21</h2>
+        <p>Tjugoett är ett klassiskt kortspel som spelas mellan en eller flera spelare och en bank. Spelet går ut på att samla kort med en sammanlagd poängsumma så nära 21 som möjligt, utan att överskrida det. Varje spelare turas om att dra kort och bestämma om de vill fortsätta eller stanna. Efter att spelaren har avslutat sin tur, spelar banken enligt förutbestämda regler. Spelet är populärt för sin enkelhet och spänning, och det har gett upphov till flera varianter, inklusive det internationellt kända spelet Blackjack.</p>
+        <p>Källa: <a href="https://sv.wikipedia.org/wiki/Tjugoett_(kortspel)">Kortspelet 21 på Wikipedia</a></p>
+        <h3>Regler</h3>
+        <p>Spelet börjar med att spelaren drar ett kort som visas öppet. Efter varje kort kan spelaren välja att stanna eller dra ytterligare ett kort. Målet för spelaren är att komma så nära 21 som möjligt, utan att gå över. Om spelarens totalsumma överstiger 21 har spelaren förlorat, och banken vinner automatiskt.</p>
+        <p>När spelaren väljer att stanna, är det bankens tur att spela. Banken känner inte till vilka kort spelaren har på hand. Istället drar banken kort ett i taget tills den väljer att stanna, eller tills den också går över 21.</p>
+        <p>Om banken får över 21 vinner spelaren. I andra fall vinner banken vid lika resultat, eller om den har en högre poäng än spelaren utan att gå över 21.</p>
+        <h3>Länk till <a href="{{ path('game-doc') }}">speldokumentation</a></h3>
+        <form method="post" action="">
+            <input class="button" type="submit" name="show" value="Start game" onClick="this.form.action='{{ path('game-plan') }}';">
+        </form>
+
+    </article>
+
+</div>
+{% endblock %}
