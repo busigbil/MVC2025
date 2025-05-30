@@ -6,13 +6,22 @@ use App\Card\DeckOfCards;
 
 class Card
 {
-    protected $value;
+    /**
+     * @var string[]
+     */
+    protected array $value;
 
-    public function __construct(?Array $card = null)
+    /**
+     * @param string[] $card
+     */
+    public function __construct(array $card)
     {
         $this->value = $card;
     }
 
+    /**
+     * @return string[]
+     */
     public function getValue(): array
     {
         return $this->value;
