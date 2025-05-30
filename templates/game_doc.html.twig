@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Doc{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <article>
+        <h1>Speldokumentation</h1>
+        <h2>Flödeschema</h2>
+        <p>Här visas ett flödesschema som illustrerar min tänkta lösning av grunderna i spelet. Det är en översiktlig lösning av det huvudsakliga flödet.</p>
+        <img src="{{ asset('img/flowchart.png') }}" alt="Flowchart for game">
+
+        <h2>Pseudokod</h2>
+        <p>Denna pseudokod visar en lösning av spelets huvudsakliga logik och är tänkt som ett första steg i problemlösningen.</p>
+        <img src="{{ asset('img/pseudocode.png') }}" alt="Pseudocode for game">
+
+        <h2>Klasser</h2>
+        <p>Följande klassöversikt visar vilka delar som kan behövas i spelet, tillsammans med en mening som förklarar varje klass funktion.</p>
+        <p>Utgångspunkten har varit att att återanvända metoder från klasserna DeckOfCards, Card och CardHand, och sedan skapa en Game-klass som innehåller följande metoder:</p>
+        
+        <h3>totalScore</h3>
+        <p>Klassen ska använda spelarens/bankens hand och beräkna det totala värdet. Värdet på ess ska bestämmas utifrån vad som är mest fördelaktigt för spelaren/banken:</p>
+        <ul>
+            <li>OM score <=21 med ess(11) -> ess värde = 11</li>
+            <li>OM score > 21 med ess(11) -> ess värde = 1</li>
+        </ul>
+
+        <h3>isOver21</h3>
+        <p>Utvärderar om det totala värdet på handen är större än 21.</p>
+
+        <h3>isWinner</h3>
+        <p>Jämför spelarens och bankens hand och returnerar vinnaren.</p>
+
+    </article>
+
+</div>
+{% endblock %}
