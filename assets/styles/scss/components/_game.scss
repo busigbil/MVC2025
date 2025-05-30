@@ -1,0 +1,7 @@
+/* game.scss */
+@use '../abstracts' as *;
+
+.game {
+    flex-direction: column;
+    align-items: center;
+}
