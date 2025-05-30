@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Winner{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="lucky game">
+        <h1>{{ text }}</h1>
+        <h2>Spelarens poäng: {{ playerScore }}</h2>
+        <h2>Bankens poäng: {{ bankScore }}</h2>
+    </div>
+</div>
+{% endblock %}
