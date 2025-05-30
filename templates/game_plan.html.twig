@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+        <h1>{{ header }}</h1>
+        <h2>Kort i handen:</h2>
+        <div class="card-container">
+            {% for value in values %}
+            <div class="card">
+                {% if value[0] == 'H' or value[0] == 'D' %}
+                <div class="red">
+                    <div class="top-suit">
+                        {{ value[2] }}
+                    </div>
+                    <div class="rank">
+                        {{ value[1] }}
+                    </div>
+                    <div class="bottom-suit">
+                        {{ value[2] }}
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <div class="top-suit">
+                        {{ value[2] }}
+                    </div>
+                    <div class="rank">
+                        {{ value[1] }}
+                    </div>
+                    <div class="bottom-suit">
+                        {{ value[2] }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <h2>Nuvarande poäng: {{ score }}</h2>
+
+        {% if header is same as ("Bankens runda") or header is same as ("Spelarens runda") and isLost %}
+        <form method="post" action="">
+            <input class="button" type="submit" name="stop" value="Visa vinnare" onClick="this.form.action='{{ path('game-winner') }}';">
+        </form>
+
+        {% elseif header is same as ("Spelarens runda") and not isLost %}
+        <div class="button-container">
+            <form method="post" action="">
+                <input class="button" type="submit" name="draw" value="Dra kort" onClick="this.form.action='{{ path('game-player') }}';">
+            </form>
+
+            <form method="post" action="">
+                <input class="button" type="submit" name="stop" value="Stanna" onClick="this.form.action='{{ path('game-bank') }}';">
+            </form>
+        </div>
+        {% endif %}
+
+</div>
+{% endblock %}
