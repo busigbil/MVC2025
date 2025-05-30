@@ -24,11 +24,6 @@ body {
   padding: 10rem 2rem 2rem;
   margin: 1.96rem auto;
   min-height: 20rem;
-
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
 }
 
 .two-col-content {
@@ -50,6 +45,7 @@ body {
     padding: 1rem;
     border-left: 3px double lightgray;
   }
+}
 
   a {
     color: $underline-color;
@@ -58,7 +54,6 @@ body {
   a:hover {
     text-shadow: $underline-color 1px 0 10px;
   }
-}
 
 @media (max-width: 767px) {
   .content {
