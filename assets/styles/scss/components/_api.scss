@@ -1,0 +1,9 @@
+/* api.scss */
+@use '../abstracts' as *;
+
+.api {
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+}
