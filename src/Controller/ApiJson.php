@@ -13,13 +13,8 @@ class ApiJson extends AbstractController
 {
     #[Route("/api", name: 'json_routes')]
     public function jsonRoutes(
-        RouterInterface $router,
-        Request $request
-    ): Response
-    {
-        //som visar en webbsida med en sammanställning av alla JSON routes 
-        // som din webbplats erbjuder. Varje route skall ha en förklaring 
-        // vad den gör.
+        RouterInterface $router
+    ): Response {
 
         //Get all routes.
         $routes = $router->getRouteCollection()->all();

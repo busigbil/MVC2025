@@ -6,6 +6,7 @@ use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +18,7 @@ class Kmom02 extends AbstractController
     #[Route("/session", name: "session", methods: ['GET'])]
     public function session(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
 
         //Get all session data
         $allData = $session->all();
@@ -33,8 +33,7 @@ class Kmom02 extends AbstractController
     #[Route("/session/delete", name: "delete_session", methods: ['POST'])]
     public function deleteSession(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Clear session content and destroy session
         $session->clear();
         $session->invalidate();
@@ -53,17 +52,17 @@ class Kmom02 extends AbstractController
         return $this->render('card.html.twig');
     }
 
-    #[Route("/card/deck", name: "card_deck",  methods: ['GET', 'POST'])]
+    #[Route("/card/deck", name: "card_deck", methods: ['GET', 'POST'])]
     public function cardDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Visar samtliga kort i kortleken sorterade per färg och värde.
         $carddeck = $session->get("card_deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         //Add cards sorted
         $carddeck->sortCards();
@@ -88,8 +87,7 @@ class Kmom02 extends AbstractController
     #[Route("/card/deck/shuffle", name: "card_shuffle", methods: ['POST'])]
     public function cardShuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Återställ kortlek
         $carddeck = new DeckOfCards();
 
@@ -114,17 +112,17 @@ class Kmom02 extends AbstractController
         return $this->render('show_deck.html.twig', $data);
     }
 
-    #[Route("/card/deck/draw", name: "card_draw",  methods: ['GET', 'POST'])]
+    #[Route("/card/deck/draw", name: "card_draw", methods: ['GET', 'POST'])]
     public function cardDraw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("card_deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         //Dra 1 kort från kortleken
         $values = $carddeck->drawCard();
@@ -147,17 +145,17 @@ class Kmom02 extends AbstractController
     public function cardHand(
         int $num,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("card_deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         if ($num > $carddeck->getNumberCards()) {
-            throw new \Exception("Can not draw more cards than available in deck!");
+            throw new Exception("Can not draw more cards than available in deck!");
         }
 
         //Dra flera kort från kortlek

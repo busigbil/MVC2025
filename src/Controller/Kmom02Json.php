@@ -6,27 +6,28 @@ use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class Kmom02Json extends AbstractController 
+class Kmom02Json extends AbstractController
 {
     #[Route("/api/deck", name: 'deck', methods: ['GET'], defaults: ['description' => 'Returnerar en JSON-struktur med hela kortleken sorterad per färg och värde.'])]
     public function deck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("api-deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         //Sortera kortlek
         $carddeck->sortCards();
@@ -43,17 +44,17 @@ class Kmom02Json extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/shuffle", name: 'shuffle',  methods: ['GET', 'POST'], defaults: ['description' => 'Blandar kortleken och returnerar den som en JSON-struktur.'])]
+    #[Route("/api/deck/shuffle", name: 'shuffle', methods: ['GET', 'POST'], defaults: ['description' => 'Blandar kortleken och returnerar den som en JSON-struktur.'])]
     public function shuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("api-deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         //Blanda kortlek
         $carddeck->shuffleCards();
@@ -76,14 +77,14 @@ class Kmom02Json extends AbstractController
     #[Route("/api/deck/draw", name: 'draw', methods: ['GET', 'POST'], defaults: ['description' => 'Drar ett kort ur kortleken, och sparar den nya kortleken till session.'])]
     public function draw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("api-deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         //Dra 1 kort ur kortleken
         $values = $carddeck->drawCard();
@@ -107,20 +108,20 @@ class Kmom02Json extends AbstractController
     }
 
     #[Route("/api/deck/draw/{num<\d+>}", name: 'draw_number', methods: ['GET', 'POST'], defaults: ['description' => 'Drar flera kort ur kortleken och sparar den nya kortleken till session.'])]
-    public function draw_number(
+    public function drawNumber(
         int $num,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         //Hämta kortlek från session
         $carddeck = $session->get("api-deck");
 
-        if (empty($carddeck)) {
+        if (!$carddeck) {
             $carddeck = new DeckOfCards();
         }
+        /** @var DeckOfCards $carddeck */
 
         if ($num > $carddeck->getNumberCards()) {
-            throw new \Exception("Can not draw more cards than available in deck!");
+            throw new Exception("Can not draw more cards than available in deck!");
         }
 
         //Dra :number kort från kortlek
