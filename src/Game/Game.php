@@ -8,6 +8,9 @@ use App\Card\DeckOfCards;
 use App\Game\Player;
 use App\Traits\GameTraits;
 
+/**
+ * Methods for class Game; for playing the card game 21.
+ */
 class Game
 {
     use GameTraits;
@@ -19,14 +22,15 @@ class Game
     /** @var Player */
     private Player $bank;
 
-    public function __construct()
+    public function __construct(?DeckOfCards $deck = null, ?Player $player = null, ?Player $bank = null)
     {
-        $this->deck = new DeckOfCards();
-        $this->player = new Player();
-        $this->bank = new Player();
+        $this->deck = $deck ?? new DeckOfCards();
+        $this->player = $player ?? new Player();
+        $this->bank = $bank ?? new Player();
     }
 
     /**
+     * Round of the game when it is the player's turn.
      * @return array{
      *     cards: string[][],
      *     score: int,
@@ -51,6 +55,7 @@ class Game
     }
 
     /**
+     * Round of the game when it is the bank's turn.
      * @return array{
      *     cards: string[][],
      *     score: int,
@@ -78,6 +83,7 @@ class Game
     }
 
     /**
+     * Returns the player's total score.
      * @return int
      */
     public function getPlayerScore(): int
@@ -86,6 +92,7 @@ class Game
     }
 
     /**
+     * Returns the bank's total score.
      * @return int
      */
     public function getBankScore(): int
@@ -93,6 +100,10 @@ class Game
         return $this->bank->getScore();
     }
 
+    /**
+     * Returns the winner of the game, based on the player and bank scores.
+     * @return string
+     */
     public function isWinner(): string
     {
         $maxScore = 21;

@@ -30,4 +30,3 @@ class Dice
         return "[{$this->value}]";
     }
 }
-

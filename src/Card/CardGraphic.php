@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Methods for CardGraphic class.
+ */
 class CardGraphic extends Card
 {
     /**

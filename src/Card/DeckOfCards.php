@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Methods for the DeckOfCards class.
+ */
 class DeckOfCards
 {
     /**
@@ -15,6 +18,7 @@ class DeckOfCards
     }
 
     /**
+     * Create a deck of french standard with 52 cards.
      * @return string[][]
      */
     public function createDeck(): array
@@ -27,23 +31,28 @@ class DeckOfCards
             foreach ($ranks as $rank) {
                 $deckArr[] = [$suit, $rank];
             }
-        }
+        };
 
         return $deckArr;
     }
 
     /**
+     * Draw a random card from the deck, and remove the card from the deck.
      * @return string[]
      */
     public function drawCard(): array
     {
-        //Draw random value from array, and remove from the deck
         $key = array_rand($this->deck, 1);
         $value = $this->deck[$key];
         unset($this->deck[$key]);
         return $value;
     }
 
+    /**
+     * Sort the cards in the deck.
+     * The first card of a suite has the value "A".
+     * The last value of a suite has the value "K".
+     */
     public function sortCards(): void
     {
         //Sort per suit, and add ace infront
@@ -53,6 +62,7 @@ class DeckOfCards
         foreach ($suits as $suit) {
             $loopValues = [];
             $startVal = [];
+            $endVal = [];
 
             foreach ($this->deck as $values) {
 
@@ -65,27 +75,39 @@ class DeckOfCards
                     continue;
                 }
 
+                if ($values[1] === 'K') {
+                    $endVal = $values;
+                    continue;
+                }
+
                 $loopValues[] = $values;
             }
             asort($loopValues);
             array_unshift($loopValues, $startVal);
+            array_push($loopValues, $endVal);
             $sortArray = array_merge($sortArray, $loopValues);
         }
         $this->deck = $sortArray;
     }
 
+    /**
+     * Shuffle the order of the cards in the deck.
+     */
     public function shuffleCards(): void
     {
-        //shuffle order in deck of cards
         shuffle($this->deck);
     }
 
+    /**
+     * Get the current number of cards in the deck.
+     */
     public function getNumberCards(): int
     {
         return count($this->deck);
     }
 
     /**
+     * Return all the values of the cards in the deck.
      * @return string[][]
      */
     public function getValues(): array

@@ -4,6 +4,9 @@ namespace App\Card;
 
 use App\Card\DeckOfCards;
 
+/**
+ * Methods for Card class.
+ */
 class Card
 {
     /**
@@ -20,6 +23,7 @@ class Card
     }
 
     /**
+     * Get the value of the current card.
      * @return string[]
      */
     public function getValue(): array
