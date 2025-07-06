@@ -3,7 +3,7 @@
 {% block title %}API-routes{% endblock %}
 
 {% block head %}
-    {{ parent() }}
+{{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -14,6 +14,13 @@
             {% for route in routes %}
             <li>{{ route.header }}</li>
             <p>{{ route.description }}</p>
+
+            {% if route.isbn is not null %}
+            <p>
+                <a href="{{ path('json-isbn', {isbn: route.isbn }) }}">Länk till JSON-struktur för ISBN: {{ route.isbn }}</a>
+            </p>
+            {% endif %}
+
             {% endfor %}
         </ul>
     </article>

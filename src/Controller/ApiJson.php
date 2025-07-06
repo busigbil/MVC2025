@@ -25,10 +25,12 @@ class ApiJson extends AbstractController
 
             if (str_starts_with($route->getPath(), '/api/')) {
                 $description = $route->getDefault('description') ?? 'Beskrivning saknas';
+                $isbn = $route->getDefault('isbn') ?? null;
 
                 $apiArr[] = [
                     'header' => $route->getPath(),
-                    'description' => $description
+                    'description' => $description,
+                    'isbn' => $isbn
                 ];
             }
         }

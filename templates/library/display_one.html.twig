@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="two-col-content">
+    <article class="article">
+        <div class="text">
+            <h1>{{ book.title}}</h1>
+            <div>
+                Author: <strong>{{ book.author}}</strong>
+            </div>
+            <div>
+                ISBN: <strong>{{ book.isbn}}</strong>
+            </div>
+            <p>In a world shaped by secrets and choices, [Book Title] follows a compelling journey of self-discovery,
+                resilience, and transformation. When the protagonist is forced to confront a hidden truth, they must
+                navigate unexpected challenges that blur the line between right and wrong. Along the way, alliances
+                shift, loyalties are tested, and the past refuses to stay buried. Rich with atmosphere and emotion, this
+                story blends suspense and reflection in equal measure. Perfect for readers who enjoy character-driven
+                narratives with a touch of mystery, [Book Title] offers a thought-provoking glimpse into the power of
+                decisions and the paths they create.</p>
+        </div>
+
+        <div class="image">
+            <img src="{{ asset('img/library/' ~ book.image) }}" alt="Book cover">
+        </div>
+
+    </article>
+    {% endblock %}
+
+    {% block sidebar %}
+    <div class="sidebar">
+
+        <h2>Book options</h2>
+        <p>Uppdatera bok</p>
+        <button>
+            <a href="{{ path('update_book_get', {id: book.id }) }}">Update</a>
+        </button>
+
+        <p>Radera bok</p>
+        <button>
+            <a href="{{ path('delete_book', {id: book.id }) }}">Delete</a>
+        </button>
+
+    </div>
+</div>
+{% endblock %}

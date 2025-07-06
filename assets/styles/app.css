@@ -366,13 +366,14 @@ body {
   justify-content: space-between;
 }
 .two-col-content article {
-  width: 75%;
+  width: 80%;
   padding: 1rem;
 }
 .two-col-content .sidebar {
-  width: 25%;
+  width: 20%;
   padding: 1rem;
   border-left: 3px double lightgray;
+  text-align: right;
 }
 
 a {
@@ -449,6 +450,40 @@ a:hover {
 }
 .nav li {
   padding: 0.5rem 1rem;
+}
+
+/* style.scss */
+/* library.scss */
+.library-form {
+  display: flex;
+  flex-direction: column;
+}
+.library-form input[type=text] {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.library-form input[type=submit] {
+  margin-top: 2rem;
+  background-color: #CD7F32;
+}
+
+.library-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+  margin: 2rem 0;
+}
+
+.book img {
+  aspect-ratio: 5/7;
+  width: 100%;
+  max-width: 14rem;
 }
 
 html {

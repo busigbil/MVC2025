@@ -36,14 +36,15 @@ body {
   justify-content: space-between;
 
   article {
-    width: calc(100% / 16 * 12);
+    width: 80%;
     padding: 1rem;
   }
 
   .sidebar {
-    width: calc(100% / 16 * 4);
+    width: 20%;
     padding: 1rem;
     border-left: 3px double lightgray;
+    text-align: right;
   }
 }
 

@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Alla böcker{% endblock %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="two-col-content">
+  <article>
+    <h1>Bibliotek</h1>
+    <h2>Alla böcker</h2>
+
+    <div class="library-container">
+      {% for book in books %}
+      <div class="book">
+        <a href="{{ path('show_one', {id: book.id }) }}">
+          <img src="{{ asset('img/library/' ~ book.image) }}" alt="Book cover">
+          <div>
+            <strong>{{ book.title}}</strong> av {{ book.author}}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+  </article>
+  {% endblock %}
+
+  {% block sidebar %}
+  <div class="sidebar">
+    <h3>Book options</h3>
+    <p>Lägg till bok</p>
+    <button>
+      <a href="{{ path('add_book_get') }}">Create</a>
+    </button>
+  </div>
+</div>
+{% endblock %}
