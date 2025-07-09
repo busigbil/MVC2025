@@ -1,4 +1,10 @@
 # Report - Mina inlämningsuppgifter i MVC
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/busigbil/MVC2025/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/busigbil/MVC2025/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/busigbil/MVC2025/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/busigbil/MVC2025/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/busigbil/MVC2025/badges/build.png?b=main)](https://scrutinizer-ci.com/g/busigbil/MVC2025/build-status/main)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/busigbil/MVC2025/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 ![First page image](public/img/first_page.png)
 
 Kursen i Model-View-Controller (MVC) vid Blekinge Tekniska Högskola ger studenter en djupgående förståelse för MVC-arkitekturen, en central designprincip inom modern webb- och applikationsutveckling.
