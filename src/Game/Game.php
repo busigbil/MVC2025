@@ -31,7 +31,7 @@ class Game
 
     /**
      * Round of the game when it is the player's turn.
-     * @return array{
+     * @return array<string, mixed> {
      *     cards: string[][],
      *     score: int,
      *     lost: bool
@@ -56,7 +56,7 @@ class Game
 
     /**
      * Round of the game when it is the bank's turn.
-     * @return array{
+     * @return array<string, mixed> {
      *     cards: string[][],
      *     score: int,
      *     lost: bool

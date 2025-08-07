@@ -29,7 +29,7 @@ class DiceHand
     }
 
     /**
-     * @return list<int|null>
+     * @return array<int|null>
      */
     public function getValues(): array
     {
@@ -63,4 +63,5 @@ class DiceHand
         }
         return $values;
     }
+
 }

@@ -306,6 +306,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-Kmom03Json.html#method_game"
         },                {
+            "fqsen": "\\App\\Controller\\Kmom06",
+            "name": "Kmom06",
+            "summary": "",
+            "url": "classes/App-Controller-Kmom06.html"
+        },                {
+            "fqsen": "\\App\\Controller\\Kmom06\u003A\u003Ametrics\u0028\u0029",
+            "name": "metrics",
+            "summary": "",
+            "url": "classes/App-Controller-Kmom06.html#method_metrics"
+        },                {
             "fqsen": "\\App\\Controller\\LibraryController",
             "name": "LibraryController",
             "summary": "",
@@ -455,6 +465,31 @@ Search.appendIndex(
             "name": "value",
             "summary": "",
             "url": "classes/App-Dice-Dice.html#property_value"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceGame",
+            "name": "DiceGame",
+            "summary": "Methods\u0020for\u0020playing\u0020pig\u0020game.",
+            "url": "classes/App-Dice-DiceGame.html"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceGame\u003A\u003ArollMixedHand\u0028\u0029",
+            "name": "rollMixedHand",
+            "summary": "Create\u0020hand\u0020and\u0020rolls\u0020all\u0020dices,\u0020returns\u0020hand\u0020with\u0020mixed\u0020images\/integers.",
+            "url": "classes/App-Dice-DiceGame.html#method_rollMixedHand"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceGame\u003A\u003ArollHand\u0028\u0029",
+            "name": "rollHand",
+            "summary": "Create\u0020hand\u0020and\u0020rolls\u0020all\u0020dices,\u0020returns\u0020hand.",
+            "url": "classes/App-Dice-DiceGame.html#method_rollHand"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceGame\u003A\u003ArollSeveral\u0028\u0029",
+            "name": "rollSeveral",
+            "summary": "Rolls\u0020number\u0020of\u0020dices\u0020used\u0020as\u0020parameter.",
+            "url": "classes/App-Dice-DiceGame.html#method_rollSeveral"
+        },                {
+            "fqsen": "\\App\\Dice\\DiceGame\u003A\u003AgameRound\u0028\u0029",
+            "name": "gameRound",
+            "summary": "Calculates\u0020the\u0020value\u0020of\u0020game\u0020round.",
+            "url": "classes/App-Dice-DiceGame.html#method_gameRound"
         },                {
             "fqsen": "\\App\\Dice\\DiceGraphic",
             "name": "DiceGraphic",

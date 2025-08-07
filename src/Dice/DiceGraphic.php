@@ -25,4 +25,5 @@ class DiceGraphic extends Dice
     {
         return $this->representation[$this->value - 1];
     }
+
 }

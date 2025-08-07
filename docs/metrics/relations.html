@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2025-07-08 21:18:52        , with PHPMetrics v2.9.0 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2025-08-07 19:33:34        , with PHPMetrics v2.9.0 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -262,17 +262,11 @@
 
     var relations = [
     {
-        "name": "\\App\\Controller\\DiceGameController",
+        "name": "\\App\\Controller\\Kmom06",
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\App\\Dice\\Dice",
-            "\\Exception",
-            "\\App\\Dice\\DiceGraphic",
-            "\\App\\Dice\\DiceHand",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface"
+            "\\Symfony\\Component\\HttpFoundation\\Response"
         ]
     },
     {
@@ -286,6 +280,19 @@
         "relations": []
     },
     {
+        "name": "\\App\\Controller\\DiceGameController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\App\\Dice\\Dice",
+            "\\Exception",
+            "\\App\\Dice\\DiceGame",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface"
+        ]
+    },
+    {
         "name": "\\App\\Dice\\Dice",
         "size": 3000,
         "relations": []
@@ -296,16 +303,11 @@
         "relations": []
     },
     {
-        "name": "\\App\\Dice\\DiceGraphic",
+        "name": "\\App\\Dice\\DiceGame",
         "size": 3000,
         "relations": [
-            "\\App\\Dice\\Dice"
-        ]
-    },
-    {
-        "name": "\\App\\Dice\\DiceHand",
-        "size": 3000,
-        "relations": [
+            "\\App\\Dice\\DiceHand",
+            "\\App\\Dice\\DiceGraphic",
             "\\App\\Dice\\Dice"
         ]
     },
@@ -488,6 +490,16 @@
             "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
             "\\Doctrine\\Persistence\\ManagerRegistry"
         ]
+    },
+    {
+        "name": "\\App\\Dice\\DiceHand",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Dice\\DiceGraphic",
+        "size": 3000,
+        "relations": []
     },
     {
         "name": "\\App\\Kernel",

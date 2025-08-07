@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Dice\Dice;
 use App\Dice\DiceGraphic;
+use App\Dice\DiceGame;
 use App\Dice\DiceHand;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,12 +41,8 @@ class DiceGameController extends AbstractController
             throw new Exception("Can not roll more than 99 dices!");
         }
 
-        $diceRoll = [];
-        for ($i = 1; $i <= $num; $i++) {
-            $die = new DiceGraphic();
-            $die->roll();
-            $diceRoll[] = $die->getAsString();
-        }
+        $game = new DiceGame();
+        $diceRoll = $game->rollSeveral($num);
 
         $data = [
             "num_dices" => count($diceRoll),
@@ -62,16 +59,8 @@ class DiceGameController extends AbstractController
             throw new Exception("Can not roll more than 99 dices!");
         }
 
-        $hand = new DiceHand();
-        for ($i = 1; $i <= $num; $i++) {
-            if ($i % 2 === 1) {
-                $hand->add(new DiceGraphic());
-                continue;
-            }
-            $hand->add(new Dice());
-        }
-
-        $hand->roll();
+        $game = new DiceGame();
+        $hand = $game->rollMixedHand($num);
 
         $data = [
             "num_dices" => $hand->getNumberDices(),
@@ -95,15 +84,10 @@ class DiceGameController extends AbstractController
     ): Response {
         // Hämtar från request hur många tärningar ska ha
         $numDice = $request->request->get('num_dices');
+        $numDice = (int) $numDice;
 
-        // Skapar tärningshand
-        $hand = new DiceHand();
-        for ($i = 1; $i <= $numDice; $i++) {
-            //Lägger antal tärningar i handen
-            $hand->add(new DiceGraphic());
-        }
-        // Rullar tärningen
-        $hand->roll();
+        $game = new DiceGame();
+        $hand = $game->rollHand($numDice);
 
         //Sätter alla värden i sessionen
         $session->set("pig_dicehand", $hand);
@@ -144,21 +128,17 @@ class DiceGameController extends AbstractController
         //Uppdaterar spelets ställning
         /** @var int $roundTotal */
         $roundTotal = $session->get("pig_round");
-        $round = 0;
-        $values = $hand->getValues();
-        foreach ($values as $value) {
-            if ($value === 1) {
-                //ge varningsmeddelande när får en etta
-                $this->addFlash(
-                    'warning',
-                    'You got a 1 and you lost the round points!'
-                );
 
-                $round = 0;
-                $roundTotal = 0;
-                break;
-            }
-            $round += $value;
+        $game = new DiceGame();
+        $round = $game->gameRound($hand);
+
+        if ($round == 0) {
+            $roundTotal = 0;
+            //ge varningsmeddelande när får en etta
+            $this->addFlash(
+                'warning',
+                'You got a 1 and you lost the round points!'
+            );
         }
 
         //Sätter värdet från spelrundan
@@ -186,5 +166,4 @@ class DiceGameController extends AbstractController
 
         return $this->redirectToRoute('pig_play');
     }
-
 }
