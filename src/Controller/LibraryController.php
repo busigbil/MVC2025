@@ -148,7 +148,7 @@ final class LibraryController extends AbstractController
     ): Response {
         $books = $bookRepository->findAll();
 
-        if (!$books) {
+        if (empty($books)) {
             throw $this->createNotFoundException(
                 'No books found'
             );
@@ -167,7 +167,6 @@ final class LibraryController extends AbstractController
         ManagerRegistry $doctrine,
         string $isbn
     ): Response {
-        $entityManager = $doctrine->getManager();
         $book = $bookRepository->findOneBy(['isbn' => $isbn]);
 
         if (!$book) {

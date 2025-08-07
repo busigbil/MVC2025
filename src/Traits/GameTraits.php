@@ -14,6 +14,12 @@ trait GameTraits
         $smallAce = 1;
         $maxValue = 21;
 
+        $scoreValues = array(
+            'J' => 11,
+            'Q' => 12,
+            'K' => 13
+        );
+
         $cards = $hand->getValues();
 
         if (empty($cards)) {
@@ -24,22 +30,19 @@ trait GameTraits
 
             $value = $card[1];
 
-            switch ($card[1]) {
-                case 'A':
-                    $aces += 1;
-                    break;
-                case 'J':
-                    $score += 11;
-                    break;
-                case 'Q':
-                    $score += 12;
-                    break;
-                case 'K':
-                    $score += 13;
-                    break;
-                default:
-                    $score += intval($value);
+            if ($value == 'A') {
+                $aces += 1;
+                continue;
             }
+
+            if (array_key_exists($value, $scoreValues)) {
+                $score += $scoreValues[$value];
+                continue;
+            }
+
+            // Default
+            $score += intval($value);
+
         }
 
         if ($score + $aces * $bigAce >= $maxValue) {
