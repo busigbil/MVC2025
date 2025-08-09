@@ -26,9 +26,9 @@ build:
             - yarn install
             - yarn build
             - composer phpunit
-            coverage:
-                file: "docs/coverage.clover"
-                format: "php-clover"
+        coverage:
+            file: "docs/coverage.clover"
+            format: "php-clover"
     # tests:
     #     override:
     #         - yarn install
