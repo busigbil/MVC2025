@@ -21,12 +21,12 @@ build:
                     - php-scrutinizer-run
                     #- phpcs-run # Not used, missing config file
 
-    tests:
-        override:
-            - yarn install
-            - yarn build
-            -   command: "composer phpunit"
-                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
-                coverage:
-                    file: "docs/coverage.clover"
-                    format: "php-clover"
+tests:
+    override:
+        - yarn install
+        - yarn build
+        - composer phpunit
+
+    coverage:
+        file: docs/coverage.clover
+        format: php-clover
