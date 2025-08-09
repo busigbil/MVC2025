@@ -6,9 +6,9 @@ filter:
 
 build:
     image: default-bionic
-    pre:
-    - yarn install
-    - yarn build
+    project_setup:
+        - yarn install
+        - yarn build
 
     nodes:
         my-tests:
