@@ -6,9 +6,6 @@ filter:
 
 build:
     image: default-bionic
-    project_setup:
-        - yarn install
-        - yarn build
 
     nodes:
         my-tests:
@@ -30,3 +27,5 @@ build:
                 coverage:
                     file: "docs/coverage.clover"
                     format: "php-clover"
+            - yarn install
+            - yarn build
