@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Metrics analys{% endblock %}
+{% block title %}Metrics{% endblock %}
 
 {% block head %}
 {{ parent() }}
@@ -9,9 +9,196 @@
 {% block content %}
 <div class="content">
     <article>
-        <h1>Metrics analys</h1>
+        <h1>Analysera och förbättra kodkvalitet i PHP-applikation</h1>
 
         <h2>Introduktion</h2>
+        <p>Kodkvalitet kan bedömas utifrån flera perspektiv. Ett vanligt ramverk är de sex C:na: Codestyle, Coverage,
+            Complexity, Cohesion, Coupling och CRAP. Tillsammans ger de en helhetsbild av hur koden är strukturerad,
+            testad och underhållbar. Nedan följer en genomgång av vad varje C innebär och hur de påverkar kvaliteten.
+        </p>
+
+        <h3>Codestyle</h3>
+        <p>Begreppet kodstil innebär de konventioner och mönster som används för att skriva källkod, vilket resulterar i
+            en konsekvent och läsbar kodbas. En konsekvent kodstil bidrar till en kodbas som är lätt att underhålla,
+            särskilt om det är kod som flera ska samarbeta om.</p>
+        <p>Symfony-projektet har definierat kodstandarder som alla användare måste följa Symfonys kodstandard baseras på
+            PHP Framework Interop Group standards, närmare bestämt reglerna som beskrivs i PSR-1, PSR-2, PSR-4, PSR-12.
+            För att säkerställa att koden i detta projekt följer korrekt kodstandard används verktyget PHP Coding
+            Standards Fixer, som automatiskt korrigerar fel i kodstilen. </p>
+        <p>Storleken och volymen på koden, alltså hur många rader en klass eller metod består av, presenteras i både
+            PHPmetrics- och Scrutinizer-rapporten. Stora klasser och metoder kan indikera att koden är svårare att
+            utveckla och underhålla.</p>
+
+        <h3>Coverage</h3>
+        <p>Kodtäckning innebär hur stor andel av koden som har täckts av enhetstester. Kodtäckning kan indirekt säga
+            något om kodens kvalitet, eftersom en hög kodtäckning indikerar att man har jobbat mycket med enhetstester,
+            och att koden är vältestad. En låg kodtäckning kan innebära en risk för kvalitetssäkringen.</p>
+        <p>Kodtäckning vid enhetstester, som visar hur stort antal rader, metoder, och klasser som täcks av enhetstester
+            visas i både PHPmetrics- och Scrutinizer-rapporten. Dessutom används PHP-extensionen PHPXdebug i detta
+            projekt för att se vilka delar av kodbasen som täcks av enhetstester.</p>
+
+        <h3>Complexity</h3>
+        <p>Programkomplexitet beskriver hur olika delar av koden samverkar. När antalet delar ökar växer antalet
+            interaktioner mellan dem exponentiellt, vilket gör koden svårare att underhålla och utveckla. Hög
+            komplexitet ökar dessutom risken för att nya buggar introduceras vid förändringar i mjukvaran.</p>
+        <p>Rapporterna PHPmetrics och Scrutinizer visar cyklomatisk komplexitet som ett mått för att bedöma denna
+            komplexitet. Cyklomatisk komplexitet är ett kvantitativt mått på antalet oberoende exekveringsvägar i
+            programmets källkod. Dessutom visar dessa rapporter Halstead Complexity Measure, som består av flera mått
+            baserade på antalet och typen av operatorer i källkoden.</p>
+
+        <h3>Cohesion</h3>
+        <p>Kohesion inom datavetenskap beskriver i vilken grad elementen inom en modul är relaterade till varandra. Det
+            kan ses som ett mått på hur stark kopplingen mellan metoderna i en klass och dess data är. Hög kohesion är
+            eftersträvansvärt, då det ofta leder till robusta, tillförlitliga och mer lättförståeliga system. En klass
+            anses ha hög kohesion när dess metoder är nära besläktade och fokuserar på samma uppgift.</p>
+        <p>Kohesion, beskrivet som Lack of cohesion of methods (LCOM), visas i både PHPmetrics- och
+            Scrutinizer-rapporterna.</p>
+
+        <h3>Coupling</h3>
+        <p>Koppling (coupling) beskriver graden av beroende och samverkan mellan olika delar av koden. Koppling är nära
+            relaterat till kohesion, där hög kohesion oftast innebär låg koppling. Låg koppling anses vara en indikator
+            på att ett system är välstrukturerat och har en god design, eftersom det gör kodbasen enklare att förstå och
+            underhålla.</p>
+        <p>Koppling visas i både PHP-metrics och Scrutinizer, där två viktiga mått är:</p>
+        <ul>
+            <li>Afferent coupling (AC): Antalet klasser som påverkas av den aktuella klassen (utgående kopplingar). Ett
+                högt AC-värde kan tyda på att klassen använder många andra klasser.</li>
+            <li>Efferent coupling (EC): Antalet klasser som påverkar den aktuella klassen (ingående kopplingar). Ett
+                högt EC-värde kan tyda på att många andra klasser är beroende av denna klass.</li>
+        </ul>
+
+        <h3>CRAP</h3>
+        <p>CRAP (Change Risk Analyzer and Predictor) är ett mått som beräknas utifrån cyklomatisk komplexitet och
+            kodtäckning. Ett lågt CRAP-värde indikerar att koden är relativt enkel och väl täckt av automatiserade
+            tester, vilket minskar risken vid förändringar. Ett högt CRAP-värde signalerar däremot att en metod är
+            komplex och dåligt testad, vilket kan innebära större arbetsinsats för att underhålla eller ändra den.</p>
+        <p>Beräkningen av CRAP baseras på relationen mellan metodens komplexitet och antalet testfall som täcker den.
+            Genom att öka testtäckningen kan man därmed minska metodens "crappiness". Det är alltså möjligt att ha
+            komplexa metoder, men då krävs också en omfattande testning för att hålla CRAP-värdet lågt.</p>
+        <p>CRAP-måttet finns tillgängligt i verktyg som Scrutinizer och syns även i täckningsrapportens dashboard från
+            PHPUnit.</p>
+
+        <h2>PHPmetrics</h2>
+        <div class="image">
+            <img src="{{ asset('img/metrics_before.png') }}" alt="PHPmetrics before">
+        </div>
+        <p><i>PHPmetrics innan förbättringsåtgärder.</i></p>
+
+        <p>Av PHPmetrics rapporten framgår att framförallt controller-klasserna har stor förbättringspotential.
+            Rapporten visar
+            totalt nio kvalitetsöverträdelser (violations), varav fyra gäller just dessa controller-klasser.
+            Controller-klasserna uppvisar även en högre komplexitet, både i enskilda klasser och i deras påverkan på
+            systemet som helhet. Detta syns i höga värden för Relative System Complexity och Relative Structural
+            Complexity. Flera av dessa klasser saknar dessutom enhetstester, vilket tillsammans med deras höga
+            cyklomatiska komplexitet ökar risken för buggar.</p>
+        <p>Måttet Lack of Cohesion of Methods (LCOM), som visar hur väl metoderna inom en klass är relaterade till
+            varandra, är också högt för två av controller-klasserna. Detta tyder på en dålig design och ökad
+            komplexitet, vilket kan leda till fler fel.</p>
+        <p>Maintainability Index används för att bedöma hur lätt en mjukvara är att underhålla och vidareutveckla. Ett
+            exempel är Game-klassen, som har ett måttligt högt maintainability index (81,68) men samtidigt en hög
+            cyklomatisk komplexitet (10). Bland de klasser som anses svårast att underhålla finns två controller-klasser
+            och en trait.</p>
+        <p>En låg andel enhetstester kan indikera bristande testtäckning, vilket ytterligare ökar risken för fel. De
+            controller-klasser som både har höga komplexitetsvärden och saknar tester bedöms därför ha en förhöjd risk
+            för buggar.</p>
+
+        <h2>Scrutinizer</h2>
+        <div class="image">
+            <img src="{{ asset('img/scrutinizer_before.png') }}" alt="Scrutinizer before">
+        </div>
+        <p><i>Scrutinizer innan förbättringsåtgärder.</i></p>
+
+        <p>Den första Scrutinizer-rapporten visar ett mycket bra totalbetyg på 9,94. Trots detta identifierades tio
+            problem kopplade till best practices, felhantering, dokumentation och oanvänd kod. Vid närmare granskning
+            framgår att de mest betydande felen handlar om bristande eller felaktig dokumentation av parametrar och
+            returtyper.</p>
+        <p>Samtliga klasser fick det högsta betyget A, men vissa funktioner i klasserna GameTraits och DeckOfCards fick
+            betyget B. Orsaken är att dessa metoder innehåller ett större antal beslutspunkter, vilket bidrar till en
+            högre cyklomatisk komplexitet.</p>
+        <p>Rapporten visar även att projektet har låg testtäckning. Av totalt 724 kodrader täcks endast 177 av
+            enhetstester, vilket motsvarar 24 %. Dessutom identifierades tre metoder med ett högt CRAP-värde på 20,
+            vilket är ett kombinationsmått av metodens komplexitet och dess testtäckning. Dessa metoder återfinns i
+            controller-klasserna Kmom02Json, DiceGameController och Kmom02.</p>
+
+        <h2>Förbättringar</h2>
+        <p>Eftersom hög komplexitet är ett återkommande problem i flera av analyserna, kommer jag att inleda
+            förbättringsarbetet med att minska komplexiteten i specifika klasser och metoder. Först kommer
+            Traits\GameTraits::loopGameScore() och App\Card\DeckOfCards::sortCards() att åtgärdas, då dessa i
+            Scrutinizer-rapporten bedömts som Worst Rated PHP Operations. Därefter fokuserar jag på controller-klasserna
+            App\Controller\DiceGameController och App\Controller\LibraryController, som återkommande pekas ut som
+            problematiska.</p>
+        <p>Målet är att dessa åtgärder ska reducera flera identifierade problem, såsom höga värden för maintainability
+            complexity och klassöverträdelser (class violations), särskilt de som kategoriserats som blob-fel. Jag
+            förväntar mig även att åtgärderna ska sänka komplexitetsvärden i flera av mätverktygens ratingar.</p>
+        <p>När komplexiteten har minskats kommer nästa steg vara att öka testtäckningen genom att skriva fler
+            enhetstester. Fokus kommer ligga på controller-klasser med både hög cyklomatisk komplexitet och hög bedömd
+            risk för fel:</p>
+        <ul>
+            <li>App\Controller\DiceGameController</li>
+            <li>App\Controller\Kmom02</li>
+            <li>App\Controller\LibraryController</li>
+        </ul>
+        <p>Förväntningen är att fler tester ska sänka riskvärdena för buggar (class violations i PHPmetrics) och minska
+            CRAP-värdet, som bygger på en kombination av komplexitet och testtäckning.</p>
+        <p>Som ett tredje steg planerar jag att åtgärda samtliga kvarstående issues från Scrutinizer-rapporten. Dessa
+            gäller främst felaktig eller ofullständig dokumentation av parametrar och returtyper, och är relativt enkla
+            att rätta. Målet är att detta ska bidra till en högre code rating i Scrutinizer.</p>
+
+        <h3>Implementering av förbättringar</h3>
+        <p>Efter att förbättringsåtgärderna hade identifierats genomfördes de enligt plan. Metoden
+            Traits\GameTraits::loopGameScore() refaktorerades för att minska antalet if-satser och därmed sänka
+            komplexiteten. I controller-klassen App\Controller\DiceGameController flyttades delar av logiken ut till en
+            separat PHP-klass, DiceGame, för att följa principen om enkel ansvarsfördelning (Single Responsibility).</p>
+        <p>Den ursprungliga planen var även att refaktorera App\Card\DeckOfCards::sortCards(), men det visade sig svårt
+            att omstrukturera metoden utan att behålla ett liknande antal if-satser. På samma sätt planerade jag att
+            refaktorera App\Controller\LibraryController, men vid närmare granskning framgick att klassen huvudsakligen
+            bestod av metoder som hanterar databasoperationer, och det fanns därför begränsat med kod som kunde flyttas
+            ut.</p>
+        <p>Utöver refaktoreringarna utökades testsviten för controller-klasserna App\Controller\DiceGameController,
+            App\Controller\Kmom02 och App\Controller\LibraryController, vilket ökade deras testtäckning till över 80 %.
+            Slutligen uppdaterades de PHPDoc-kommentarer som i Scrutinizer-rapporten identifierats som felaktiga, för
+            att förbättra dokumentationen och kodkvaliteten.</p>
+
+        <h3>PHPmetrics</h3>
+        <div class="image">
+            <img src="{{ asset('img/phpmetrics_after.png') }}" alt="PHPmetrics after">
+        </div>
+        <p><i>PHPmetrics efter förbättringsåtgärder.</i></p>
+
+        <p>Resultatet av förbättringsåtgärderna framgår tydligt i PHPmetrics-rapporten. Antalet rader kod, antalet
+            klasser och antalet testverifieringar har ökat, vilket speglar de genomförda kod- och testtilläggen.</p>
+        <p>Förändringarna har däremot inte påverkat de violations som rapporten beskriver, och inte heller antalet
+            genomsnittliga buggar per klass. Däremot har den genomsnittliga cyklomatiska komplexiteten sjunkit efter
+            åtgärderna.</p>
+        <p>Den grafiska representationen av maintainability och complexity visar också en förbättring för klasserna
+            App\Card\DeckOfCards och App\Controller\Kmom02, där båda har fått lägre värden för komplexitet.</p>
+
+        <h3>Scrutinizer</h3>
+        <div class="image">
+            <img src="{{ asset('img/scrutinizer_after.png') }}" alt="Scrutinizer after">
+        </div>
+        <p><i>Scrutinizer efter förbättringsåtgärder.</i></p>
+
+        <h2>Diskussion</h2>
+
+        <h2>Källor</h2>
+        <p>Bloch, J. (2006, February 8). Code complexity and the CRAP metric. Artima Developer.
+            https://www.artima.com/weblogs/viewpost.jsp?thread=215899</p>
+        <p>dbwebb-se. (n.d.). MVC example metrics. GitHub. https://github.com/dbwebb-se/mvc/tree/main/example/metrics
+        </p>
+        <p>Scrutinizer CI. (n.d.). Lack of cohesion of methods.
+            https://scrutinizer-ci.com/docs/tools/php/php-analyzer/metrics/lack_of_cohesion_of_methods</p>
+        <p>Symfony. (n.d.). Coding standards. https://symfony.com/doc/current/contributing/code/standards.html</p>
+        <p>Wikipedia contributors. (n.d.). Cohesion (computer science). Wikipedia.
+            https://en.wikipedia.org/wiki/Cohesion_(computer_science)</p>
+        <p>Wikipedia contributors. (n.d.). Coupling (computer programming). Wikipedia.
+            https://en.wikipedia.org/wiki/Coupling_(computer_programming)</p>
+        <p>Wikipedia contributors. (n.d.). Cyclomatic complexity. Wikipedia.
+            https://en.wikipedia.org/wiki/Cyclomatic_complexity</p>
+        <p>Wikipedia contributors. (n.d.). Halstead complexity measures. Wikipedia.
+            https://en.wikipedia.org/wiki/Halstead_complexity_measures</p>
+        <p>Wikipedia contributors. (n.d.). Programming complexity. Wikipedia.
+            https://en.wikipedia.org/wiki/Programming_complexity</p>
 
     </article>
 
