@@ -21,7 +21,8 @@ build:
 
             tests:
                 override:
-                    - composer phpunit
-                      coverage:
-                          file: "docs/coverage.clover"
-                          format: "php-clover"
+                    -   command: "composer phpunit"
+                        # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+                        coverage:
+                            file: "docs/coverage.clover"
+                            format: "php-clover"
