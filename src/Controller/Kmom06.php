@@ -14,6 +14,6 @@ class Kmom06 extends AbstractController
         //Skapa en landningssida metrics/ för din “Metrics analys”
         // som handlar om kodkvalitet och hur man kan jobba med “Clean code”.
         // Placera landningssidan i din navbar. Du skriver din rapport direkt i landningssidan.
-        return $this->render('home.html.twig');
+        return $this->render('metrics.html.twig');
     }
 }

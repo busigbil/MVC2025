@@ -376,6 +376,12 @@ body {
   text-align: right;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 a {
   color: #CD7F32;
 }

@@ -8,16 +8,20 @@
     <link rel="icon" href="{{ asset('img/shiba_icon.svg') }}">
 
     {% block stylesheets %}
-    {% if app.environment != 'test' %}
-        {{ encore_entry_link_tags('app') }}
+    {% if 'encore_entry_link_tags' is defined and app.environment != 'test' %}
+    {{ encore_entry_link_tags('app') }}
     {% endif %}
     {% endblock %}
 
     {% block javascripts %}
-    {% if app.environment != 'test' %}
-        {{ encore_entry_script_tags('app') }}
+    {% if 'encore_entry_script_tags' is defined and app.environment != 'test' %}
+    {{ encore_entry_script_tags('app') }}
     {% endif %}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% block importmap %}
+    {% if 'importmap' is defined and app.environment != 'test' %}
+    {{ importmap('app') }}
+    {% endif %}
+    {% endblock %}
     {% endblock %}
 </head>
 
@@ -47,8 +51,9 @@
 
     <footer class="footer">
         {% block footer %}
-            &copy; Copyright 2025 by me.
+        &copy; Copyright 2025 by me.
         {% endblock %}
     </footer>
 </body>
+
 </html>

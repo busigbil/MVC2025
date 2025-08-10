@@ -48,13 +48,19 @@ body {
   }
 }
 
-  a {
-    color: $underline-color;
-  }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-  a:hover {
-    text-shadow: $underline-color 1px 0 10px;
-  }
+a {
+  color: $underline-color;
+}
+
+a:hover {
+  text-shadow: $underline-color 1px 0 10px;
+}
 
 @media (max-width: 767px) {
   .content {
