@@ -12,13 +12,11 @@ build:
             environment:
                 php:
                     version: 8.3.3
+                APP_ENV: test
 
             dependencies:
                 before:
                     - composer install --no-interaction --prefer-dist --optimize-autoloader
-
-            environment:
-                APP_ENV: test
 
             tests:
                 override:
