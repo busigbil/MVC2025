@@ -8,6 +8,11 @@ build:
     image: default-bionic
 
     nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
+
         my-tests:
             environment:
                 php:
@@ -23,11 +28,10 @@ build:
                     - npm install
                     - npm run build
 
-            analysis:
-                tests:
-                    override:
-                        - php-scrutinizer-run
-                        
             tests:
                 override:
-                    - command: "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
+                -   command: "composer phpunit"
+                    # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+                    coverage:
+                        file: "docs/coverage.clover"
+                        format: "php-clover"
