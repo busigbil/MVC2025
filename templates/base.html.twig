@@ -8,20 +8,12 @@
     <link rel="icon" href="{{ asset('img/shiba_icon.svg') }}">
 
     {% block stylesheets %}
-    {% if app.environment != 'test' %}
     {{ encore_entry_link_tags('app') }}
-    {% else %}
-    <link rel="stylesheet" href="{{ asset('css/test-fallback.css') }}">
-    {% endif %}
     {% endblock %}
 
     {% block javascripts %}
-    {% if app.environment != 'test' %}
     {{ encore_entry_script_tags('app') }}
-    {% if 'importmap' is defined %}
     {{ importmap('app') }}
-    {% endif %}
-    {% endif %}
     {% endblock %}
 </head>
 

@@ -12,13 +12,22 @@ build:
             environment:
                 php:
                     version: 8.3.3
+                node:
+                    version: 18
                 variables:
                     APP_ENV: test
 
             dependencies:
                 before:
+                    # Installera PHP-dependencies
                     - composer install --no-interaction --prefer-dist --optimize-autoloader
+                    
+                    # Installera Node-dependencies
+                    - npm install
+                    
+                    # Bygg Encore-assets så manifest.json skapas
+                    - npm run build
 
             tests:
                 override:
-                    - command: "APP_ENV=test XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
+                    - command: "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
