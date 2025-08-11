@@ -19,15 +19,15 @@ build:
 
             dependencies:
                 before:
-                    # Installera PHP-dependencies
                     - composer install --no-interaction --prefer-dist --optimize-autoloader
-                    
-                    # Installera Node-dependencies
                     - npm install
-                    
-                    # Bygg Encore-assets så manifest.json skapas
                     - npm run build
 
+            analysis:
+                tests:
+                    override:
+                        - php-scrutinizer-run
+                        
             tests:
                 override:
                     - command: "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
