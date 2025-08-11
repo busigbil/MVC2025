@@ -8,22 +8,20 @@
     <link rel="icon" href="{{ asset('img/shiba_icon.svg') }}">
 
     {% block stylesheets %}
-    {% if 'encore_entry_link_tags' is defined and app.environment != 'test' %}
+    {% if app.environment != 'test' %}
     {{ encore_entry_link_tags('app') }}
     {% else %}
-    <link rel="stylesheet" href="{{ asset('test-fallback.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/test-fallback.css') }}">
     {% endif %}
     {% endblock %}
 
     {% block javascripts %}
-    {% if 'encore_entry_script_tags' is defined and app.environment != 'test' %}
+    {% if app.environment != 'test' %}
     {{ encore_entry_script_tags('app') }}
-    {% endif %}
-    {% block importmap %}
-    {% if 'importmap' is defined and app.environment != 'test' %}
+    {% if 'importmap' is defined %}
     {{ importmap('app') }}
     {% endif %}
-    {% endblock %}
+    {% endif %}
     {% endblock %}
 </head>
 
